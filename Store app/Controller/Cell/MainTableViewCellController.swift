@@ -46,8 +46,10 @@ extension MainTableViewCellController: UICollectionViewDataSource, UICollectionV
         
 //        let product = productArray[indexPath.row]
 //cell.categoryLabelImage.image = UIImage(named: product.image)
-        
-        cell.imageProduct.image = UIImage(named: product.image)
+        if let uiimage = cell.imageProduct{
+            uiimage.image = UIImage(named: product.image)
+        }
+//        cell.imageProduct.image = UIImage(named: product.image)
         cell.layer.cornerRadius = 5
 //        cell.backgroundColor = .lightGray
         return cell

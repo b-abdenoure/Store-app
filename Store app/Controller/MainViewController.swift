@@ -26,10 +26,12 @@ class MainViewController: UIViewController {
         
         
         
-        let cellNib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
-            categoryCollection.register(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
-
-//        self.categoryCollection.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+//        let cellNib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+//            categoryCollection.register(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+//        self.collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        categoryCollection.dataSource = self
+        categoryCollection.delegate = self
+        self.categoryCollection.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
 
         self.networkManager.fetchDataFromAPI { category in
             
@@ -40,8 +42,7 @@ class MainViewController: UIViewController {
         }
 
 
-//        categoryCollection.dataSource = self
-//        categoryCollection.delegate = self
+
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -94,7 +95,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         cell.categoryItemCollection.delegate = MainTableViewCellController()
-        cell.categoryItemCollection.dataSource = MainTableViewCellController()œ
+        cell.categoryItemCollection.dataSource = MainTableViewCellController()
         cell.categoryName.text = categoryListe[indexPath.row].category
         cell.categoryItemCollection.reloadData()
 
@@ -121,17 +122,45 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
 //            return UICollectionViewCell()
 //        }
 //
-//        let product = categoryListe[indexPath.row]
+//      let product = categoryListe[indexPath.row]
 //        print(product)
 ////        cell.configure(with: product)
 //
 ////        let product = productArray[indexPath.row]
 ////cell.categoryLabelImage.image = UIImage(named: product.image)
-//        cell.categoryLabelName.text = product.category
+//        if let label = cell.categoryLabelName {
+//            label.text = product.category
+//            print(product.category)
+//        }
+//
+////        cell.categoryLabelName.text = product.category
 //        cell.layer.cornerRadius = 5
 ////        cell.backgroundColor = .lightGray
+//        categoryCollection.reloadData()
 //        return cell
 //    }
 //
 //
 //}
+
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+
+func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return categoryListe.count
+}
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        let product = categoryListe[indexPath.row]
+        
+        if let label = cell.categoryLabelName {
+            label.text = product.category
+        }
+        
+        return cell
+    }
+
+}

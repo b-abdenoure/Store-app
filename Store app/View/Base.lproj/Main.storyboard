@@ -103,7 +103,7 @@
                                                     <size key="customSize" width="130" height="150"/>
                                                     <connections>
                                                         <outlet property="categoryLabelImage" destination="YZJ-7U-htg" id="quK-Ra-kDX"/>
-                                                        <outlet property="categoryLabelName" destination="Eb7-0s-Anq" id="ukb-aO-dpk"/>
+                                                        <outlet property="categoryLabelName" destination="Eb7-0s-Anq" id="z9F-3q-15g"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
