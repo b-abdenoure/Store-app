@@ -85,9 +85,13 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return
+//    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryListe.count
     }
+   
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCellController", for: indexPath) as? MainTableViewCellController
@@ -96,13 +100,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         }
 //        cell.categoryItemCollection.delegate = MainTableViewCellController()
 //        cell.categoryItemCollection.dataSource = MainTableViewCellController()
+//        cell.categoryName.text = categoryListe[indexPath.row].category
+        
+//        DispatchQueue.main.async {
+            cell.productData = self.productArray
         cell.categoryName.text = categoryListe[indexPath.row].category
-        
-        DispatchQueue.main.async {
-            cell.productArray = self.productArray
-        
         cell.categoryItemCollection.reloadData()
-        }
+//        }
         return cell
     }
     

@@ -12,7 +12,11 @@ struct NetworkManager{
     
     let productURL = "https://fakestoreapi.com/products"
     let categoryURL = "https://fakestoreapi.com/products/categories"
-    
+    let electronicsCategoryURL = "https://fakestoreapi.com/products/category/electronics"
+    let jeweleryCategoryURL = "https://fakestoreapi.com/products/category/jewelery"
+    let mensClothingCategoryURL = "https://fakestoreapi.com/products/category/men's clothing"
+    let womensClothingCategoryURL = "https://fakestoreapi.com/products/category/women's clothing"
+
     func fetchProductsData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
         let url = URL(string: productURL)!
         
@@ -38,7 +42,31 @@ struct NetworkManager{
         
         task.resume()
     }
-    
+    func fetchElectronicsCategoryData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
+        let url = URL(string: electronicsCategoryURL)!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            //print(data)
+            guard let data = data else {return}
+            
+            do {
+                
+                let postsData = try JSONDecoder().decode([ProductsModel].self, from: data)
+//                print(postsData)
+//                print(postsData)
+                completionHandler(.success(postsData))
+               
+            }
+            catch{
+                let error = Error.self
+                completionHandler(.failure(error as! Error))
+                //print(String(describing: error))
+
+            }
+        }
+        
+        task.resume()
+    }
 //    func fetchCategoryList(completion: @escaping (Result<[CategoryModel],Error>) -> Void){
 //        let url = URL(string: categoryURL)!
 //        let task = URLSession.shared.dataTask(with: url){ (data, response , error)in
