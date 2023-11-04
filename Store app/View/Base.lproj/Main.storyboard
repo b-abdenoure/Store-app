@@ -229,28 +229,35 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC4-hB-Pmu">
+                                                                        <rect key="frame" x="5" y="138.5" width="150" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="892457614d1bbbcdb3c2b279375c9e07" translatesAutoresizingMaskIntoConstraints="NO" id="7Xi-Oe-VVl">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="140"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="7Xi-Oe-VVl" secondAttribute="trailing" id="3T9-J3-ukF"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="7Xi-Oe-VVl" secondAttribute="bottom" id="6i4-Re-UlB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="rC4-hB-Pmu" secondAttribute="trailing" constant="5" id="5wQ-YY-vOI"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="7Xi-Oe-VVl" secondAttribute="bottom" constant="20" id="6i4-Re-UlB"/>
+                                                                    <constraint firstItem="rC4-hB-Pmu" firstAttribute="leading" secondItem="zP9-Ja-uYF" secondAttribute="leading" constant="5" id="F3E-DK-YOG"/>
                                                                     <constraint firstItem="7Xi-Oe-VVl" firstAttribute="top" secondItem="zP9-Ja-uYF" secondAttribute="top" id="Txb-cT-FUC"/>
+                                                                    <constraint firstItem="rC4-hB-Pmu" firstAttribute="top" secondItem="zP9-Ja-uYF" secondAttribute="top" constant="138.5" id="ZRv-3M-oGS"/>
                                                                     <constraint firstItem="7Xi-Oe-VVl" firstAttribute="leading" secondItem="zP9-Ja-uYF" secondAttribute="leading" id="ocB-1Z-5Vv"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="rC4-hB-Pmu" secondAttribute="bottom" id="xlX-1P-Rl7"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                             <size key="customSize" width="160" height="160"/>
                                                             <connections>
-                                                                <outlet property="imageProduct" destination="7Xi-Oe-VVl" id="TYZ-4B-1uG"/>
+                                                                <outlet property="imageProduct" destination="7Xi-Oe-VVl" id="uV4-MB-GfQ"/>
+                                                                <outlet property="productName" destination="rC4-hB-Pmu" id="0S1-Bm-kag"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="Vz4-y2-TqW" id="cra-Rf-KQb"/>
-                                                        <outlet property="delegate" destination="Vz4-y2-TqW" id="8c5-a1-IdJ"/>
-                                                    </connections>
                                                 </collectionView>
                                             </subviews>
                                             <constraints>

@@ -9,25 +9,31 @@ import UIKit
 
 class MainTableViewCellController: UITableViewCell {
 
-    var productArray = [ProductsModel]()
+    var productArray: [ProductsModel] = []
+
     @IBOutlet weak var categoryName: UILabel!
-    
-    
     
     @IBAction func seeAll(_ sender: UIButton) {
     }
     
     @IBOutlet weak var categoryItemCollection: UICollectionView!
     
+    override func awakeFromNib() {
+            super.awakeFromNib()
+        categoryItemCollection.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "ProductCollectionViewCell")
+
+    categoryItemCollection.delegate = self
+    categoryItemCollection.dataSource = self
+//        print(productArray)
+//    categoryItemCollection.reloadData()
+
+    }
+    
 }
 
-extension MainTableViewCellController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+extension MainTableViewCellController: UICollectionViewDataSource, UICollectionViewDelegate{
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-////        let size = (collectionView.frame.size.width ) / 0.8
-//        return CGSize(width: 150, height: 150)
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return min(3, productArray.count)
         return productArray.count
@@ -41,14 +47,20 @@ extension MainTableViewCellController: UICollectionViewDataSource, UICollectionV
         }
         
         let product = productArray[indexPath.row]
-        print(product)
-//        cell.configure(with: product)
+//        print(product)
         
 //        let product = productArray[indexPath.row]
 //cell.categoryLabelImage.image = UIImage(named: product.image)
-        if let uiimage = cell.imageProduct{
-            uiimage.image = UIImage(named: product.image)
+
+//        if let uiimage = cell.imageProduct{
+//            uiimage.image = UIImage(named: product.image)
+//        }
+        if let label = cell.productName {
+                label.text = product.title ?? "Unknown"
+            print(label.text!)
         }
+//            cell.productName.text? = product.title
+        
 //        cell.imageProduct.image = UIImage(named: product.image)
         cell.layer.cornerRadius = 5
 //        cell.backgroundColor = .lightGray

@@ -10,4 +10,5 @@ import UIKit
 class ProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageProduct: UIImageView!
+    @IBOutlet weak var productName: UILabel!
 }

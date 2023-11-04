@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
 //        self.collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         categoryCollection.dataSource = self
         categoryCollection.delegate = self
-        self.categoryCollection.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+//        self.categoryCollection.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
 
         self.networkManager.fetchDataFromAPI { category in
             
@@ -94,56 +94,22 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         else {
             return UITableViewCell()
         }
-        cell.categoryItemCollection.delegate = MainTableViewCellController()
-        cell.categoryItemCollection.dataSource = MainTableViewCellController()
+//        cell.categoryItemCollection.delegate = MainTableViewCellController()
+//        cell.categoryItemCollection.dataSource = MainTableViewCellController()
         cell.categoryName.text = categoryListe[indexPath.row].category
+        
+        DispatchQueue.main.async {
+            cell.productArray = self.productArray
+        
         cell.categoryItemCollection.reloadData()
-
-    
+        }
         return cell
     }
     
 }
 
-//extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
-//
-////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//////        let size = (collectionView.frame.size.width ) / 0.8
-////        return CGSize(width: 150, height: 150)
-////    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return categoryListe.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell
-//        else {
-//            return UICollectionViewCell()
-//        }
-//
-//      let product = categoryListe[indexPath.row]
-//        print(product)
-////        cell.configure(with: product)
-//
-////        let product = productArray[indexPath.row]
-////cell.categoryLabelImage.image = UIImage(named: product.image)
-//        if let label = cell.categoryLabelName {
-//            label.text = product.category
-//            print(product.category)
-//        }
-//
-////        cell.categoryLabelName.text = product.category
-//        cell.layer.cornerRadius = 5
-////        cell.backgroundColor = .lightGray
-//        categoryCollection.reloadData()
-//        return cell
-//    }
-//
-//
-//}
 
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate{
 
 func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return categoryListe.count
@@ -159,6 +125,19 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
         if let label = cell.categoryLabelName {
             label.text = product.category
         }
+        switch product.category{
+        case "electronics" :
+            cell.categoryLabelImage.image = UIImage(named: "electonic")
+        case "jewelery" :
+            cell.categoryLabelImage.image = UIImage(named: "jewelery01")
+        case "men's clothing" :
+            cell.categoryLabelImage.image = UIImage(named: "men-cloth01")
+        case "women's clothing" :
+            cell.categoryLabelImage.image = UIImage(named: "woman-cloth01")
+        default:
+            cell.categoryLabelImage.image = UIImage(named: "texture-flower-orange-red-color-macro-1110078-pxhere.com")
+        }
+        
         
         return cell
     }
