@@ -16,7 +16,7 @@ class MainTableViewCellController: UITableViewCell {
     var productMensClothingCategory: [ProductsModel] = []
     var productWomensClothingCategory: [ProductsModel] = []
     
-    var fetchedCategoryCount = 0
+//    var fetchedCategoryCount = 0
 
     @IBOutlet weak var categoryName: UILabel!
     
@@ -38,13 +38,13 @@ class MainTableViewCellController: UITableViewCell {
             switch result{
             case .success( let items):
                 self.productElectronicCategory = items
-                self.fetchedCategoryCount += 1
+//                self.fetchedCategoryCount += 1
 
-                               if self.fetchedCategoryCount == 4 {
+//                               if self.fetchedCategoryCount == 4 {
                                    DispatchQueue.main.async {
                                        self.categoryItemCollection.reloadData()
                                    }
-                               }
+//                               }
 
             case .failure(_):
                 print(Error.self)
@@ -56,13 +56,13 @@ class MainTableViewCellController: UITableViewCell {
             switch result{
             case .success( let items):
                 self.productJeweleryCategory = items
-                self.fetchedCategoryCount += 1
+//                self.fetchedCategoryCount += 1
 
-                               if self.fetchedCategoryCount == 4 {
+//                               if self.fetchedCategoryCount == 4 {
                                    DispatchQueue.main.async {
                                        self.categoryItemCollection.reloadData()
                                    }
-                               }
+//                               }
 
             case .failure(_):
                 print(Error.self)
@@ -73,13 +73,13 @@ class MainTableViewCellController: UITableViewCell {
             switch result{
             case .success( let items):
                 self.productMensClothingCategory = items
-                self.fetchedCategoryCount += 1
+//                self.fetchedCategoryCount += 1
 
-                               if self.fetchedCategoryCount == 4 {
+//                               if self.fetchedCategoryCount == 4 {
                                    DispatchQueue.main.async {
                                        self.categoryItemCollection.reloadData()
                                    }
-                               }
+//                               }
             case .failure(_):
                 print(Error.self)
             }
@@ -89,13 +89,13 @@ class MainTableViewCellController: UITableViewCell {
             switch result{
             case .success( let items):
                 self.productWomensClothingCategory = items
-                self.fetchedCategoryCount += 1
+//                self.fetchedCategoryCount += 1
 
-                               if self.fetchedCategoryCount == 4 {
+//                               if self.fetchedCategoryCount == 4 {
                                    DispatchQueue.main.async {
                                        self.categoryItemCollection.reloadData()
                                    }
-                               }
+//                               }
 
             case .failure(_):
                 print(Error.self)
@@ -193,44 +193,5 @@ extension MainTableViewCellController: UICollectionViewDataSource, UICollectionV
 //        cell.backgroundColor = .lightGray
         return cell
     }
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell
-//        else {
-//            return UICollectionViewCell()
-//        }
-//
-//        var product: ProductsModel?
-//
-//        switch categoryName.text {
-//        case "electronics":
-//            print("Configuring cell for electronics")
-//            product = productElectronicCategory[indexPath.row]
-//        case "jewelery":
-//            print("Configuring cell for jewelery")
-//            product = productJeweleryCategory[indexPath.row]
-//        case "men's clothing":
-//            print("Configuring cell for men's clothing")
-//            product = productMensClothingCategory[indexPath.row]
-//        case "women's clothing":
-//            print("Configuring cell for women's clothing")
-//            product = productWomensClothingCategory[indexPath.row]
-//        default:
-//            print("Invalid category: \(categoryName.text ?? "Unknown")")
-//        }
-//
-//        if let product = product {
-//            cell.productName.text = product.title
-//            DispatchQueue.main.async {
-//                let url = URL(string: product.image)!
-//                if let data = try? Data(contentsOf: url) {
-//                    cell.imageProduct.image = UIImage(data: data)
-//                }
-//            }
-//        }
-//
-//        cell.layer.cornerRadius = 5
-//
-//        return cell
-//    }
-
+//   
 }
