@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
     
     func updateUi(item:[ProductsModel]){
         let randomItem = item.randomElement()
-        nameProduct.text = randomItem?.title
+        nameProduct.text = randomItem?.title ?? ""
         descriptionProductLight.text = randomItem?.description
         //DispatcœhQueue.global().async{
         let url = URL(string: randomItem?.image ?? "")!
@@ -103,7 +103,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
 //        cell.categoryName.text = categoryListe[indexPath.row].category
         
 //        DispatchQueue.main.async {
-            cell.productData = self.productArray
+//            cell.productData = self.productArray
         cell.categoryName.text = categoryListe[indexPath.row].category
         cell.categoryItemCollection.reloadData()
 //        }

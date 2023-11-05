@@ -80,7 +80,6 @@
 				07AC20EA29DBA1D3006A2884 /* View */,
 				07AC20E929DBA1AB006A2884 /* Controller */,
 				07AC20D629DB91BE006A2884 /* Assets.xcassets */,
-				07AC20D829DB91BE006A2884 /* LaunchScreen.storyboard */,
 				07AC20DB29DB91BE006A2884 /* Info.plist */,
 			);
 			path = "Store app";
@@ -111,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				07AC20D329DB91BB006A2884 /* Main.storyboard */,
+				07AC20D829DB91BE006A2884 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -14,11 +14,34 @@ struct NetworkManager{
     let categoryURL = "https://fakestoreapi.com/products/categories"
     let electronicsCategoryURL = "https://fakestoreapi.com/products/category/electronics"
     let jeweleryCategoryURL = "https://fakestoreapi.com/products/category/jewelery"
-    let mensClothingCategoryURL = "https://fakestoreapi.com/products/category/men's clothing"
-    let womensClothingCategoryURL = "https://fakestoreapi.com/products/category/women's clothing"
+    let mensClothingCategoryURL = "https://fakestoreapi.com/products/category/men's%20clothing"
+    let womensClothingCategoryURL = "https://fakestoreapi.com/products/category/women's%20clothing"
 
     func fetchProductsData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
         let url = URL(string: productURL)!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            //print(data)
+            guard let data = data else {return}
+            
+            do {
+                
+                let postsData = try JSONDecoder().decode([ProductsModel].self, from: data)
+//                print(postsData)
+//                print(postsData)
+                completionHandler(.success(postsData))
+            }
+            catch{
+                let error = Error.self
+                completionHandler(.failure(error as! Error))
+                //print(String(describing: error))
+            }
+        }
+        
+        task.resume()
+    }
+    func fetchElectronicsCategoryData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
+        let url = URL(string: electronicsCategoryURL)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             //print(data)
@@ -42,8 +65,9 @@ struct NetworkManager{
         
         task.resume()
     }
-    func fetchElectronicsCategoryData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
-        let url = URL(string: electronicsCategoryURL)!
+    
+    func fetchJeweleryCategoryData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
+        let url = URL(string: jeweleryCategoryURL)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             //print(data)
@@ -53,6 +77,58 @@ struct NetworkManager{
                 
                 let postsData = try JSONDecoder().decode([ProductsModel].self, from: data)
 //                print(postsData)
+//                print(postsData)
+                completionHandler(.success(postsData))
+               
+            }
+            catch{
+                let error = Error.self
+                completionHandler(.failure(error as! Error))
+                //print(String(describing: error))
+
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func fetchMensClothingCategoryData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
+        let url = URL(string: mensClothingCategoryURL)!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            //print(data)
+            guard let data = data else {return}
+            
+            do {
+                
+                let postsData = try JSONDecoder().decode([ProductsModel].self, from: data)
+//                print(postsData)
+//                print(postsData)
+                completionHandler(.success(postsData))
+               
+            }
+            catch{
+                let error = Error.self
+                completionHandler(.failure(error as! Error))
+                //print(String(describing: error))
+
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func fetchWomensClothingCategoryData(completionHandler: @escaping (Result<[ProductsModel], Error>) -> Void){
+        let url = URL(string: womensClothingCategoryURL)!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            //print(data)
+            guard let data = data else {return}
+            
+            do {
+                
+                let postsData = try JSONDecoder().decode([ProductsModel].self, from: data)
+                print(postsData)
 //                print(postsData)
                 completionHandler(.success(postsData))
                
@@ -159,7 +235,7 @@ struct NetworkManager{
                 let categories = try JSONDecoder().decode([String].self, from: data)
                 let categoryList = categories.map { Category(category: $0) }
                 completion(categoryList)
-                
+                print(categoryList)
                
             } catch {
                 print("Error decoding data: \(error.localizedDescription)")
