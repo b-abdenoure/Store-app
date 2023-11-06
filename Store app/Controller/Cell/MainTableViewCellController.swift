@@ -16,6 +16,7 @@ class MainTableViewCellController: UITableViewCell {
     var productMensClothingCategory: [ProductsModel] = []
     var productWomensClothingCategory: [ProductsModel] = []
     
+    
 //    var fetchedCategoryCount = 0
 
     @IBOutlet weak var categoryName: UILabel!
@@ -33,70 +34,50 @@ class MainTableViewCellController: UITableViewCell {
     categoryItemCollection.dataSource = self
 //        print(productArray)
 //    categoryItemCollection.reloadData()
-        self.networkManager.fetchElectronicsCategoryData {
+        networkManager.fetchProductsCategoryData(myUrl: networkManager.electronicsCategoryURL) {
             result in
             switch result{
             case .success( let items):
                 self.productElectronicCategory = items
-//                self.fetchedCategoryCount += 1
-
-//                               if self.fetchedCategoryCount == 4 {
-                                   DispatchQueue.main.async {
-                                       self.categoryItemCollection.reloadData()
-                                   }
-//                               }
-
+                DispatchQueue.main.async {
+                    self.categoryItemCollection.reloadData()
+                }
             case .failure(_):
                 print(Error.self)
             }
         }
-//        print(self.productElectronicCategory)
-        self.networkManager.fetchJeweleryCategoryData {
+        networkManager.fetchProductsCategoryData(myUrl: networkManager.jeweleryCategoryURL) {
             result in
             switch result{
             case .success( let items):
                 self.productJeweleryCategory = items
-//                self.fetchedCategoryCount += 1
-
-//                               if self.fetchedCategoryCount == 4 {
-                                   DispatchQueue.main.async {
-                                       self.categoryItemCollection.reloadData()
-                                   }
-//                               }
-
+                DispatchQueue.main.async {
+                    self.categoryItemCollection.reloadData()
+                }
             case .failure(_):
                 print(Error.self)
             }
         }
-        self.networkManager.fetchMensClothingCategoryData {
+        networkManager.fetchProductsCategoryData(myUrl: networkManager.mensClothingCategoryURL) {
             result in
             switch result{
             case .success( let items):
                 self.productMensClothingCategory = items
-//                self.fetchedCategoryCount += 1
-
-//                               if self.fetchedCategoryCount == 4 {
-                                   DispatchQueue.main.async {
-                                       self.categoryItemCollection.reloadData()
-                                   }
-//                               }
+                DispatchQueue.main.async {
+                    self.categoryItemCollection.reloadData()
+                }
             case .failure(_):
                 print(Error.self)
             }
         }
-        self.networkManager.fetchWomensClothingCategoryData {
+        networkManager.fetchProductsCategoryData(myUrl: networkManager.womensClothingCategoryURL) {
             result in
             switch result{
             case .success( let items):
                 self.productWomensClothingCategory = items
-//                self.fetchedCategoryCount += 1
-
-//                               if self.fetchedCategoryCount == 4 {
-                                   DispatchQueue.main.async {
-                                       self.categoryItemCollection.reloadData()
-                                   }
-//                               }
-
+                DispatchQueue.main.async {
+                    self.categoryItemCollection.reloadData()
+                }
             case .failure(_):
                 print(Error.self)
             }
@@ -111,9 +92,7 @@ extension MainTableViewCellController: UICollectionViewDataSource, UICollectionV
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return min(3, productArray.count)
-//        print(productData.count)
-//return productElectronicCategory.count
+
         switch categoryName.text{
         case "electronics":
             return productElectronicCategory.count
@@ -132,10 +111,6 @@ extension MainTableViewCellController: UICollectionViewDataSource, UICollectionV
         else {
             return UICollectionViewCell()
         }
-
-
-
-//
         //        let electronicsProduct = productElectronicCategory[indexPath.row]
         //        let jeweleryProduct = productJeweleryCategory[indexPath.row]
         //        let mensClothingProduct = productMensClothingCategory[indexPath.row]
